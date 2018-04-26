@@ -1,8 +1,7 @@
 <template>
   <tabbar>
     <tabbar-item v-for="item in bottomBar" :link="item.link" :key="item.name">
-      <!-- <span slot="icon" class="zui-icon" :class="item.iconCls">
-      </span> -->
+      <icon slot="icon" name="flag"></icon>
       <span slot="label">
         {{item.name}}
       </span>
