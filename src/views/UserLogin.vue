@@ -14,6 +14,7 @@
 </template>
 <script>
 import { XInput, XButton } from 'vux'
+import { db } from 'lib/db'
 export default {
   components: {
     XInput,
@@ -34,9 +35,9 @@ export default {
         password: this.password,
         kaptcha: this.kaptcha
       }
-      alert(this.username)
       const result = await this.post('/api/user/login', parms)
       if (result.success) {
+        this.$router.go(-1)
         alert('登录成功')
       }
     },
@@ -44,6 +45,9 @@ export default {
     refreshKaptcha () {
       this.kaptchaUrl = this.kaptchaUrl + '?'
     }
+
+  },
+  mounted () {
 
   }
 

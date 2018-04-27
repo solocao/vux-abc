@@ -40,6 +40,7 @@ const webpackConfig = {
       'assets': resolve('src/assets'),
       'components': resolve('src/components'),
       'views': resolve('src/views'),
+      'lib': resolve('src/lib'),
     }
   },
   module: {

@@ -7,15 +7,16 @@
       </div>
       <span class="title">{{shop.title}}</span>
       <div class="icon-tool">
-        <router-link class="zui-icon zui-icon-SEARCH_1" :to="{name: 'searchResult'}">
+        <router-link :to="{name: 'searchResult'}">
+          <icon name="sync"></icon>
         </router-link>
-
         <share-popup :shareCls="'zui-icon-SHARE2'" :share="shop.shareInfo">
         </share-popup>
       </div>
     </div>
 
     <view-box class="z-content">
+      <!-- swiper 导航栏目 -->
       <div class="life-index-banner">
         <swiper :list="shopBanner">
         </swiper>
@@ -62,33 +63,43 @@ export default {
     SharePopup,
     ViewBox
   },
-  data () {
+  data() {
     return {
-      // shop: shop,
+      shop: {
+        logo: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525357369&di=2717825c23b0fa14fccd3cafeb20a099&imgtype=jpg&er=1&src=http%3A%2F%2Fimg5q.duitang.com%2Fuploads%2Fitem%2F201502%2F19%2F20150219180534_MZkMk.jpeg',
+        title: 'AA电单车'
+      },
       shopBanner: shopBanner,
       shopCat: shopCat,
       floor1: floor1,
       recommendGoods: recommendGoods
     }
   },
-  created () {
-    this.initShop()
+  created() {
+    this.advCarousel()
   },
   computed: {
-    shop () {
+    shop() {
       return {
         logo: '/static/img/life-index-logo.png',
         shareInfo: {
           qrcode: '/static/img/good-default.jpg',
-          title: '长按二维码分享' },
+          title: '长按二维码分享'        },
         title: '极物商城'
       }
       // return this.$store.getters.shop
     }
   },
   methods: {
-    initShop () {
-      this.$store.dispatch('initShop')
+    async advCarousel() {
+      const result = await this.get('/api/adv/carousel')
+      if (result.success) {
+        this.shopBanner = result.data.map(x => ({
+          img: 'http://www.aaebike.com:9090' + x,
+          title: '送你一辆车',
+          url: 'javascript:'
+        }))
+      }
     }
   }
 }
@@ -111,6 +122,7 @@ export default {
 }
 .life-index-head .logo img {
   width: 100%;
+  border-radius: 50%;
   display: block;
 }
 .life-index-head .title {
@@ -132,7 +144,6 @@ export default {
 }
 
 .life-index-banner {
-  margin-top: 44px;
   background-color: #fff;
 }
 </style>
