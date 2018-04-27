@@ -1,14 +1,14 @@
 <template>
   <div class="z-content">
     <div class="address-edit-wrap">
-      <x-input title="用户名" name="username" placeholder="请输入用户名" is-type="china-name"></x-input>
-      <x-input title="密码" name="password" type="password" placeholder="请输入密码"></x-input>
-      <x-input title="验证码">
-        <img slot="right-full-height" src="https://ws1.sinaimg.cn/large/663d3650gy1fq684go3glj203m01hmwy.jpg">
+      <x-input v-model="username" title="用户名" name="username" placeholder="请输入用户名" is-type="china-name"></x-input>
+      <x-input v-model="password" title="密码" name="password" type="password" placeholder="请输入密码"></x-input>
+      <x-input v-model="kaptcha" title="验证码">
+        <img @click="refreshKaptcha" slot="right-full-height" :src="kaptchaUrl">
       </x-input>
     </div>
     <div style="padding:15px;">
-      <x-button @click.native="style = 'color:red;'" type="primary">登录</x-button>
+      <x-button @click.native="login" type="primary">登录</x-button>
     </div>
   </div>
 </template>
@@ -18,6 +18,33 @@ export default {
   components: {
     XInput,
     XButton
+  },
+  data () {
+    return {
+      username: 'demo',
+      password: 'demo',
+      kaptcha: 'demo',
+      kaptchaUrl: 'http://aaebike.com:9090/kaptcha/image'
+    }
+  },
+  methods: {
+    async login () {
+      const parms = {
+        username: this.username,
+        password: this.password,
+        kaptcha: this.kaptcha
+      }
+      alert(this.username)
+      const result = await this.post('/api/user/login', parms)
+      if (result.success) {
+        alert('登录成功')
+      }
+    },
+    // 刷新验证码
+    refreshKaptcha () {
+      this.kaptchaUrl = this.kaptchaUrl + '?'
+    }
+
   }
 
 }

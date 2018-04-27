@@ -5,9 +5,14 @@ import App from './App'
 import router from './router'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
+import { get, post } from './api/index.js'
 Vue.component('icon', Icon)
 
 Vue.config.productionTip = false
+
+// 全局请求数据
+Vue.prototype.get = get
+Vue.prototype.post = post
 
 /* eslint-disable no-new */
 new Vue({
