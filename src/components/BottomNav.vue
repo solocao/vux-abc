@@ -1,7 +1,7 @@
 <template>
   <tabbar>
     <tabbar-item v-for="item in bottomBar" :link="item.link" :key="item.name">
-      <icon slot="icon" name="flag"></icon>
+      <icon slot="icon" class="b-icon" :name="item.icon"></icon>
       <span slot="label">
         {{item.name}}
       </span>
@@ -23,25 +23,36 @@ export default {
         {
           name: '首页',
           iconCls: 'zui-icon-INDEX_1',
-          link: 'index'
+          link: 'index',
+          icon: 'home'
         },
         {
-          name: '文章',
+          name: '活动',
           iconCls: 'zui-icon-TEA',
-          link: 'articles'
+          link: 'articles',
+          icon: 'calendar'
         },
         {
           name: '购物车',
           iconCls: 'zui-icon-SHOPPING-CART-EMPTY',
-          link: 'cart'
+          link: 'shoppint-cart',
+          icon: 'cart-plus'
         },
         {
           name: '我的',
           iconCls: 'zui-icon-MINE_1',
-          link: 'mine'
+          link: 'user',
+          icon: 'user'
         }
       ]
     }
   }
 }
 </script>
+<style lang="less">
+.b-icon {
+  width: 80%;
+  height: 80%;
+  margin-top: 10%;
+}
+</style>
