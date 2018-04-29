@@ -1,6 +1,5 @@
 <template>
   <div class="z-page">
-
     <div class="z-head life-index-head">
       <div class="logo">
         <img :src="shop.logo" alt="">
@@ -14,25 +13,19 @@
         </share-popup>
       </div>
     </div>
-
     <view-box class="z-content">
       <!-- swiper 导航栏目 -->
       <div class="life-index-banner">
         <swiper :list="shopBanner">
         </swiper>
       </div>
-
       <cat-box :cats="shopCat" :title="'美的一笔'">
       </cat-box>
-
-      <sale-floor :type="'floorA'" :hasAll="true" :floorTitle="'精选好物'" :floorData="floor1">
+      <sale-floor v-if="false" :type="'floorA'" :hasAll="true" :floorTitle="'精选好物'" :floorData="floor1">
       </sale-floor>
-
-      <recommend :type="'INDEXGOODRECOMMEND'" :recommendTitle="'优物推荐'" :recommendData="recommendGoods">
+      <recommend :type="'GRIDRECOMMEND'" :recommendTitle="'优物推荐'" :goods="goods">
       </recommend>
-
       <ending-tip :showLoading="false"></ending-tip>
-
     </view-box>
 
   </div>
@@ -48,6 +41,7 @@ import Recommend from 'components/Recommend.vue'
 import ScrollerBox from 'components/ScrollerBox.vue'
 import GoodGrid from 'components/GoodGrid.vue'
 import { Swiper, SwiperItem, Popup, ViewBox } from 'vux'
+import BScroll from 'better-scroll'
 
 export default {
   components: {
@@ -63,7 +57,7 @@ export default {
     SharePopup,
     ViewBox
   },
-  data() {
+  data () {
     return {
       shop: {
         logo: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525357369&di=2717825c23b0fa14fccd3cafeb20a099&imgtype=jpg&er=1&src=http%3A%2F%2Fimg5q.duitang.com%2Fuploads%2Fitem%2F201502%2F19%2F20150219180534_MZkMk.jpeg',
@@ -72,26 +66,36 @@ export default {
       shopBanner: shopBanner,
       shopCat: shopCat,
       floor1: floor1,
-      recommendGoods: recommendGoods
+      recommendGoods: recommendGoods,
+      goods: []
     }
   },
-  created() {
+  created () {
     this.advCarousel()
+    this.productList()
   },
+  mounted () {
+    this.$nextTick(() => {
+      // this.scroll = new BScroll(this.$refs.wrapper, {})
+    })
+    console.log('看看商品')
+    console.log(this.recommendGoods)
+  },
+
   computed: {
-    shop() {
-      return {
-        logo: '/static/img/life-index-logo.png',
-        shareInfo: {
-          qrcode: '/static/img/good-default.jpg',
-          title: '长按二维码分享'        },
-        title: '极物商城'
-      }
-      // return this.$store.getters.shop
-    }
+    // shop() {
+    //   return {
+    //     logo: '/static/img/life-index-logo.png',
+    //     shareInfo: {
+    //       qrcode: '/static/img/good-default.jpg',
+    //       title: '长按二维码分享'        },
+    //     title: '极物商城'
+    //   }
+    //   // return this.$store.getters.shop
+    // }
   },
   methods: {
-    async advCarousel() {
+    async advCarousel () {
       const result = await this.get('/api/adv/carousel')
       if (result.success) {
         this.shopBanner = result.data.map(x => ({
@@ -100,7 +104,19 @@ export default {
           url: 'javascript:'
         }))
       }
+    },
+    async productList () {
+      const parms = {
+        page: 1,
+        rows: 8
+      }
+      const result = await this.get('/api/product/list', parms)
+      if (result.success) {
+        this.goods = result.data.list.map(x => { x.cover = 'http://www.aaebike.com:9090' + x.cover; return x })
+        console.log('goods', this.goods)
+      }
     }
+
   }
 }
 </script>

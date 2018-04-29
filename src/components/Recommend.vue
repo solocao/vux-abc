@@ -1,48 +1,17 @@
 <template>
-	<div v-if="type === 'INDEXGOODRECOMMEND'">
+	<div>
 		<div class="index-goodRecommend-head">
 			{{recommendTitle}}
 		</div>
-		<good-grid :data="recommendData"></good-grid>
+		<good-grid :data="goods"></good-grid>
 	</div>
-
-	<div v-else-if="type === 'GRIDRECOMMEND'" class="grid-recommend-wrap">
-		<div class="grid-recommend-head">
-			—— {{recommendTitle}} ——
-		</div>
-		<good-grid :data="recommendData"></good-grid>
-	</div>
-
-	<div v-else-if="type === 'ARTICLERECOMMEND'">
-		<div class="article-recommend-head">
-			—— {{recommendTitle}} ——
-		</div>
-		<article-card :articleList="recommendData"></article-card>
-	</div>
-
-	<div v-else-if="type === 'ARTICLEGOODRECOMMEND'">
-		<div class="article-good-recommend-head">
-			—— {{recommendTitle}} ——
-		</div>
-		<div class="article-good-recommend-wrap">
-			<good-list v-for="item in recommendData" :type="'SUBINFO'" :data="item" :key="item.id">
-			</good-list>
-		</div>
-		<router-link class="article-good-recommend-foot" :to="{
-				name: 'index'
-			}">
-			更多商品
-		</router-link>
-	</div>
-
-	<div v-else>ddd{{type}}</div>
 </template>
 <script>
 import GoodList from 'components/GoodList.vue'
 import GoodGrid from 'components/GoodGrid.vue'
 import ArticleCard from 'components/ArticleCard.vue'
 export default {
-  props: ['type', 'recommendTitle', 'recommendData'],
+  props: ['type', 'recommendTitle', 'goods'],
   components: {
     GoodList,
     GoodGrid,
