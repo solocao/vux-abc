@@ -5,6 +5,7 @@ import index from 'views/index'
 import mine from 'views/MyCenter'
 import UserLogin from 'views/UserLogin'
 import BetterScroll from '@/components/BetterScroll'
+import GoodDetail from 'views/GoodDetail'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/better',
       name: 'better',
       component: BetterScroll
+    },
+    {
+      path: '/good',
+      name: 'good',
+      component: GoodDetail
     }
   ]
 })
