@@ -38,7 +38,7 @@ export default new Router({
       component: BetterScroll
     },
     {
-      path: '/good',
+      path: '/good/:id',
       name: 'good',
       component: GoodDetail
     },

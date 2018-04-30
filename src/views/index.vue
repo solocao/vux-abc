@@ -23,7 +23,7 @@
       </cat-box>
       <sale-floor v-if="false" :type="'floorA'" :hasAll="true" :floorTitle="'精选好物'" :floorData="floor1">
       </sale-floor>
-      <recommend :type="'GRIDRECOMMEND'" :recommendTitle="'优物推荐'" :goods="goods">
+      <recommend :type="'GRIDRECOMMEND'" title="热门商品" :goods="goods">
       </recommend>
       <ending-tip :showLoading="false"></ending-tip>
     </view-box>

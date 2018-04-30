@@ -1,17 +1,17 @@
 <template>
-	<div>
-		<div class="index-goodRecommend-head">
-			{{recommendTitle}}
-		</div>
-		<good-grid :data="goods"></good-grid>
-	</div>
+  <div>
+    <div class="index-goodRecommend-head">
+      {{title}}
+    </div>
+    <good-grid :data="goods"></good-grid>
+  </div>
 </template>
 <script>
 import GoodList from 'components/GoodList.vue'
 import GoodGrid from 'components/GoodGrid.vue'
 import ArticleCard from 'components/ArticleCard.vue'
 export default {
-  props: ['type', 'recommendTitle', 'goods'],
+  props: ['type', 'title', 'goods'],
   components: {
     GoodList,
     GoodGrid,

@@ -186,12 +186,12 @@ export default {
     }
   },
   created () {
-    this.productDetail()
+    this.productDetail(this.$route.params.id)
   },
   methods: {
     // 获取商品详情
-    async productDetail () {
-      const result = await this.get('/api/product/detail', { productId: 8 })
+    async productDetail (id) {
+      const result = await this.get('/api/product/detail', { productId: id })
       if (result.success) {
         result.data.cover = 'http://www.aaebike.com:9090' + result.data.cover
         result.data.imgUrlList = result.data.imgUrlList.map(x => 'http://www.aaebike.com:9090' + x)

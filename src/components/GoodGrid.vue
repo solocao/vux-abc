@@ -1,22 +1,22 @@
 <template>
-	<ul class="zlist-2-item">
-		<li class="item" v-for="item in data" :key="item.id">
-			<router-link :to="{
-					name: 'goodDetail',
+  <ul class="zlist-2-item">
+    <li class="item" v-for="item in data" :key="item.id">
+      <router-link :to="{
+					name: 'good',
 					params: {id: item.id}
 				}">
-				<img :src="item.cover" />
-				<div class="info">
-					<div class="title z-ellipsis-2">
-						{{item.name}}
-					</div>
-					<div class="subtitle z-ellipsis-2">
-						￥{{item.salePrice}}
-					</div>
-				</div>
-			</router-link>
-		</li>
-	</ul>
+        <img :src="item.cover" />
+        <div class="info">
+          <div class="title z-ellipsis-2">
+            {{item.name}}
+          </div>
+          <div class="subtitle z-ellipsis-2">
+            ￥{{item.salePrice}}
+          </div>
+        </div>
+      </router-link>
+    </li>
+  </ul>
 </template>
 <script>
 export default {
