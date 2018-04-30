@@ -48,10 +48,9 @@
 <script>
 import { article, articleRecommend, articleGoods } from '../../data/data.js'
 
-import SharePopup from '../../components/sharePopup.vue'
-import Recommend from '../../components/Recommend.vue'
+import SharePopup from 'components/sharePopup.vue'
+import Recommend from 'components/Recommend.vue'
 import { ViewBox } from 'vux'
-require('./articleDetail.less')
 
 export default {
   components: {
@@ -59,7 +58,7 @@ export default {
     ViewBox,
     SharePopup
   },
-  data() {
+  data () {
     return {
       likeState: false,
       likeCls: {
@@ -72,25 +71,25 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     this.initArticle()
   },
   computed: {
-    loading() {
+    loading () {
       return this.$store.getters.loading
     },
-    article() {
+    article () {
       return this.$store.getters.article
     },
-    recommendArticles() {
+    recommendArticles () {
       return this.$store.getters.recArtArticles
     },
-    recommendGoods() {
+    recommendGoods () {
       return this.$store.getters.recArtGoods
     }
   },
   methods: {
-    likeHandler() {
+    likeHandler () {
       if (this.likeState) {
 
       } else {
@@ -98,7 +97,7 @@ export default {
         this.article.like++
       }
     },
-    initArticle() {
+    initArticle () {
       this.$store.dispatch('getArticle')
     }
   }

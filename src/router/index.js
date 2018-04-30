@@ -6,6 +6,8 @@ import mine from 'views/MyCenter'
 import UserLogin from 'views/UserLogin'
 import BetterScroll from '@/components/BetterScroll'
 import GoodDetail from 'views/GoodDetail'
+import ArticleList from 'views/ArticleList'
+import TheCart from 'views/TheCart'
 
 Vue.use(Router)
 
@@ -22,7 +24,7 @@ export default new Router({
       component: index
     },
     {
-      path: '/mine',
+      path: '/user',
       name: 'mine',
       component: mine
     },
@@ -40,6 +42,16 @@ export default new Router({
       path: '/good',
       name: 'good',
       component: GoodDetail
+    },
+    {
+      path: '/articles',
+      name: 'articleList',
+      component: ArticleList
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: TheCart
     }
   ]
 })

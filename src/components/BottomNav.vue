@@ -35,7 +35,7 @@ export default {
         {
           name: '购物车',
           iconCls: 'zui-icon-SHOPPING-CART-EMPTY',
-          link: 'shoppint-cart',
+          link: 'cart',
           icon: 'cart-plus'
         },
         {
