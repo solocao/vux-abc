@@ -27,7 +27,7 @@
 <script>
 import { XInput, XButton, Toast } from 'vux'
 import { db } from 'lib/db'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   components: {
     XInput,
@@ -50,6 +50,9 @@ export default {
     })
   },
   methods: {
+    ...mapMutations({
+      set: 'set'
+    }),
     async login () {
       const parms = {
         username: this.username,
@@ -59,6 +62,9 @@ export default {
       const result = await this.post('/api/user/login', parms)
       if (result.success) {
         db.set('login', true).write()
+        db.set('user', result.data).write()
+        console.log('user')
+        console.log(db.get('user').value())
         return this.$router.push('/index')
       } else {
         this.toastText = result.errorMsg
@@ -72,7 +78,7 @@ export default {
 
   },
   mounted () {
-
+    this.set({ haha: 'ceshi', niubi: 1231 })
   }
 }
 </script>
