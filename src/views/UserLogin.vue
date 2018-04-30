@@ -59,8 +59,7 @@ export default {
       const result = await this.post('/api/user/login', parms)
       if (result.success) {
         db.set('login', true).write()
-        const adsf = db.get('login').value()
-        alert(adsf)
+        return this.$router.push('/index')
       } else {
         this.toastText = result.errorMsg
         this.toastShow = true
@@ -75,7 +74,6 @@ export default {
   mounted () {
 
   }
-
 }
 </script>
 <style lang="less">
