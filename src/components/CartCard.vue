@@ -27,18 +27,18 @@ export default {
     Icon,
     XNumber
   },
-  data() {
+  data () {
     return {
       num: 1,
-      selected: false
+      selected: true
     }
   },
   methods: {
-    selectHandler() {
+    selectHandler () {
       this.selected = !this.selected
       this.$emit('on-selected-good')
     },
-    change(val) {
+    change (val) {
       this.$emit('on-selected-num', val)
     }
   }
@@ -66,8 +66,8 @@ export default {
 }
 .cart-card-wrap .cart-card-info img {
   float: left;
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
 }
 .cart-card-wrap .cart-card-info .cart-card-desc {
   overflow: hidden;
@@ -86,7 +86,7 @@ export default {
 }
 .cart-card-wrap .cart-card-info .cart-card-desc .price {
   padding-top: 6px;
-  font-size: 15px;
+  font-size: 18px;
   color: #ed7a5d;
 }
 .cart-card-wrap .cart-card-info .cart-card-desc .accumulator {
@@ -105,6 +105,6 @@ export default {
   border-color: #ccc;
 }
 .accumulator .vux-number-selector svg {
-  fill: #ed7a5d;
+  fill: rgb(60, 197, 31);
 }
 </style>

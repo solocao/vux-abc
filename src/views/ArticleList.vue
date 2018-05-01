@@ -2,7 +2,7 @@
   <div class="z-page">
     <view-box class="z-content" v-show="!loading">
       <div class="article-list-head">
-        <swiper :list="banners"></swiper>
+        <swiper :list="banners" style="width:100;"></swiper>
       </div>
       <div class="article-list-body">
         <article-card :articleList="advListArr">

@@ -1,8 +1,6 @@
 <template>
   <empty-view v-show="!loading" v-if="cart.length === 0" :iconCls="'zui-icon-SHOPPING-CART-EMPTY'" :text="'您的购物车空空如也，赶紧去逛逛吧！'">
-    assay
   </empty-view>
-
   <div v-else v-show="!loading">
     <swipeout>
       <swipeout-item v-for="(item,index) in cart" transition-mode="follow" @on-close="handleEvents('on-close')" @on-open="handleEvents('on-open')" :key="item.id">
@@ -45,27 +43,27 @@ export default {
     SwipeoutItem,
     SwipeoutButton
   },
-  data () {
+  data() {
     return {
       selectList: [],
       num: 1,
       selectAll: false,
-      cart: []
+      cart: [{ name: '小毛驴', title: '小毛驴', subInfo: '附属标题', price: 1322, img: 'http://www.aaebike.com:9090/data/img/167c08_1513910159315.jpg' }]
     }
   },
   computed: {
-    loading () {
+    loading() {
       return false
     }
   },
   methods: {
-    handleEvents (type) {
+    handleEvents(type) {
       console.log('event: ', type)
     },
-    selectAllHandler () {
+    selectAllHandler() {
       this.selectAll = !this.selectAll
     },
-    selectGood (index) {
+    selectGood(index) {
       if (this.selectList.includes(index)) {
         this.selectList.splice(this.selectList.indexOf(index), 1)
       } else {
@@ -73,7 +71,7 @@ export default {
       }
       // console.log(this.selectList)
     },
-    selectNum () {
+    selectNum() {
 
     }
   }

@@ -171,5 +171,6 @@ export default {
 
 .life-index-banner {
   background-color: #fff;
+  margin-top: 44px;
 }
 </style>

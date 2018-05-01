@@ -154,14 +154,8 @@ export const recommendGoods = [
 export const articles = [
   {
     id: 'a',
-    img: '/static/img/article-default.png',
-    title: '发现生活中的美',
-    subtitle: '发现生活中的美发现生活中的美。'
-  },
-  {
-    id: 'b',
-    img: '/static/img/article-default.png',
-    title: '发现生活中的美',
+    img: '/assets/img/credit.jpg',
+    title: '办理信用卡',
     subtitle: '发现生活中的美发现生活中的美。'
   }
 ]
@@ -169,14 +163,9 @@ export const articles = [
 // article banner
 export const articleBanner = [
   {
-    url: 'javascript:',
-    img: '/static/img/article-head.jpg',
-    title: '送你一辆车'
-  },
-  {
-    url: 'javascript:',
-    img: '/static/img/article-head.jpg',
-    title: '送你一辆车'
+    url: 'https://creditcard.cmbc.com.cn/wsv2/?source=WX',
+    img: '/static/img/credit.png',
+    title: '办理信用卡'
   }
 ]
 
