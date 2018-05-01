@@ -40,7 +40,7 @@
           </div>
         </div>
 
-        <div class="good-detail-specification">
+        <div v-if="false" class="good-detail-specification">
           <cell class="z-cell-item" :title="'选择: 规格 / 颜色'" is-link @click.native="toggerSpeciPopup(0)">
           </cell>
         </div>
@@ -196,7 +196,6 @@ export default {
         result.data.cover = 'http://www.aaebike.com:9090' + result.data.cover
         result.data.imgUrlList = result.data.imgUrlList.map(x => 'http://www.aaebike.com:9090' + x)
         this.good = result.data
-        console.log(JSON.parse(JSON.stringify(result.data)))
       }
     },
 

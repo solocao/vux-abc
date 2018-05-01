@@ -1,9 +1,9 @@
 <template>
   <div class="z-page">
     <div class="mine-head-wrap">
-      <img :src="userInfo.logo" />
+      <img src="@/assets/img/head.jpg" />
       <div class="mine-info">
-        <span class="name">{{userInfo.name}}</span>
+        <span class="name">{{user.name}}</span>
         <span class="hello">, hello</span>
       </div>
       <router-link class="setting zui-icon zui-icon-setting" :to="{	name: 'mySetting'	}">
@@ -90,6 +90,7 @@
 </template>
 <script>
 import { userInfo } from '../data/data.js'
+import { mapState } from 'vuex'
 
 import { Badge, Cell, Group, Flexbox, FlexboxItem } from 'vux'
 export default {
@@ -100,7 +101,7 @@ export default {
     FlexboxItem,
     Flexbox
   },
-  data () {
+  data() {
     return {
       userInfo: userInfo,
       orderTag: {
@@ -136,7 +137,17 @@ export default {
         }
       }
     }
+  },
+  computed: {
+    ...mapState({
+      user: 'user'
+    })
+  },
+  mounted() {
+    console.log('看看信息')
+    console.log(JSON.parse(JSON.stringify(this.user)))
   }
+
 }
 </script>
 
@@ -162,6 +173,7 @@ export default {
   width: 60px;
   height: 60px;
   float: left;
+  border-radius: 50%;
 }
 .mine-head-wrap .mine-info {
   overflow: hidden;

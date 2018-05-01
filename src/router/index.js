@@ -8,6 +8,7 @@ import BetterScroll from '@/components/BetterScroll'
 import GoodDetail from 'views/GoodDetail'
 import ArticleList from 'views/ArticleList'
 import TheCart from 'views/TheCart'
+import GoodCat from 'views/GoodCat'
 
 Vue.use(Router)
 
@@ -51,6 +52,11 @@ export default new Router({
       path: '/cart',
       name: 'cart',
       component: TheCart
+    },
+    {
+      path: '/cat',
+      name: 'cat',
+      component: GoodCat
     }
   ]
 })
