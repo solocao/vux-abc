@@ -19,7 +19,7 @@
         <swiper :list="shopBanner">
         </swiper>
       </div>
-      <cat-box :cats="shopCat" :title="'美的一笔'">
+      <cat-box :cats="brandList" :title="'单车品牌'">
       </cat-box>
       <sale-floor v-if="false" :type="'floorA'" :hasAll="true" :floorTitle="'精选好物'" :floorData="floor1">
       </sale-floor>
@@ -67,12 +67,14 @@ export default {
       shopCat: shopCat,
       floor1: floor1,
       recommendGoods: recommendGoods,
-      goods: []
+      goods: [],
+      brandList: []
     }
   },
   created () {
     this.advCarousel()
     this.productList()
+    this.getBrand()
   },
   mounted () {
     this.$nextTick(() => {
@@ -114,6 +116,14 @@ export default {
       if (result.success) {
         this.goods = result.data.list.map(x => { x.cover = 'http://www.aaebike.com:9090' + x.cover; return x })
         console.log('goods', this.goods)
+      }
+    },
+    // 获取品牌
+    async  getBrand () {
+      const result = await this.get('api/brand/list')
+      if (result.success) {
+        result.data.list.unshift({ id: 0, name: '全部' })
+        this.brandList = result.data.list
       }
     }
 

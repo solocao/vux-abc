@@ -11,7 +11,7 @@
 							surplus: 20
 						}" :datas="brandList">
             <template slot-scope="props">
-              <div class="catresult-catbar-item" :class="ItemSelected ? 'catbar-item-active' : ''" :tag="props.data.id" @click="catBarClick">
+              <div class="catresult-catbar-item" :class="props.data.id === ItemSelected ? 'catbar-item-active' : ''" :tag="props.data.id" @click="catBarClick(props.data.id)">
                 {{props.data.name}}
               </div>
             </template>
@@ -22,7 +22,7 @@
       <div class="catresult-result-wrap" v-show="!loading">
         <swiper :list="catBanner"></swiper>
         <good-grid :data="catGood"></good-grid>
-        <ending-tip :showLoading="true"></ending-tip>
+        <!-- <ending-tip :showLoading="true"></ending-tip> -->
       </div>
     </view-box>
   </div>
@@ -47,7 +47,7 @@ export default {
     EndingTip,
     ScrollerBox
   },
-  data() {
+  data () {
     return {
       index: 0,
       tag: '',
@@ -59,47 +59,42 @@ export default {
       catGood: []
     }
   },
-  created() {
-    this.initCat()
+  created () {
     this.getBrand()
-    this.getCatGood()
+  },
+  beforeRouteEnter (to, from, next) {
+    next((vm) => {
+      vm.catGood = []
+      vm.getCatGood(to.query.brandId)
+    })
   },
   computed: {
-    computedTag() {
+    computedTag () {
       return this.$route.query.tag
     },
-    loading() {
-      return this.$store.getters.loading
+    loading () {
+      return false
     }
-
-    // catTags() {
-    //   return this.$store.getters.catTags
-    // },
-    // catBanner() {
-    //   return this.$store.getters.catBanner
-    // },
-    // catResult() {
-    //   return this.$store.getters.catResult
-    // }
   },
   methods: {
-    catBarClick() {
-      // this.ItemSelected = true
+    catBarClick (brandId) {
+      this.getCatGood(brandId)
+      this.ItemSelected = brandId
     },
     // 获取分类的商品
-    async getCatGood() {
-      const result = await this.get('api/product/list', { brandId: 1, rows: 100 })
+    async getCatGood (brandId) {
+      const params = { rows: 100 }
+      // brandId = 0 则查找全部
+      if (brandId !== 0) {
+        params.brandId = brandId
+      }
+      const result = await this.get('api/product/list', params)
       if (result.success) {
         this.catGood = result.data.list.map(x => { x.cover = 'http://www.aaebike.com:9090' + x.cover; return x })
       }
-      console.log('看看分类的')
-      console.log(result)
-    },
-    initCat() {
-      this.$store.dispatch('getCatResult')
     },
     // 获取品牌
-    async  getBrand() {
+    async  getBrand () {
       const result = await this.get('api/brand/list')
       if (result.success) {
         result.data.list.unshift({ id: 0, name: '全部' })

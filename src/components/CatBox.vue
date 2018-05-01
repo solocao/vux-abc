@@ -1,20 +1,20 @@
 <template>
-	<div class="life-cat-wrap">
-		<div class="life-cat-head" v-if="title">
-			{{title}}
-		</div>
-		<flexbox :gutter="0" wrap="wrap">
-			<flexbox-item :span="1/5" v-for="item in cats" :key="item.id">
-				<router-link class="life-cat-item" :to="{
-						name: 'goodCat',
-						query: {tag: item.id}
+  <div class="life-cat-wrap">
+    <div class="life-cat-head" v-if="title">
+      {{title}}
+    </div>
+    <flexbox :gutter="0" wrap="wrap">
+      <flexbox-item :span="1/5" v-for="item in cats" :key="item.id">
+        <router-link class="life-cat-item" :to="{
+						name: 'cat',
+						query: {brandId: item.id}
 					}">
-					<img :src="item.img" alt="">
-					<div>{{item.text}}</div>
-				</router-link>
-			</flexbox-item>
-		</flexbox>
-	</div>
+          <img :src="item.img" alt="">
+          <div>{{item.name}}</div>
+        </router-link>
+      </flexbox-item>
+    </flexbox>
+  </div>
 </template>
 
 <script>

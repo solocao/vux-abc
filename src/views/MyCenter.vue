@@ -101,7 +101,7 @@ export default {
     FlexboxItem,
     Flexbox
   },
-  data() {
+  data () {
     return {
       userInfo: userInfo,
       orderTag: {
@@ -143,8 +143,7 @@ export default {
       user: 'user'
     })
   },
-  mounted() {
-    console.log('看看信息')
+  mounted () {
     console.log(JSON.parse(JSON.stringify(this.user)))
   }
 
